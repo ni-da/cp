@@ -11,5 +11,9 @@ s.sendall("IP")
 msg = s.recv(60)
 print msg
 
+# s.sendall("Something")
+# msg = s.recv(60)
+# print msg
+
 s.sendall("EXIT")
 s.close()

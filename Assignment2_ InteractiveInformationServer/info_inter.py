@@ -12,17 +12,34 @@ def close_server(conn, s):
 host = 'localhost'
 port = 2000
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.bind((host, port))
-s.listen(1)
+
+try:
+    s.bind((host, port))
+except s.error as msg:
+    print 'Binding failed. Error Code : ' + str(msg[0]) + ' Message ' + msg[1]
+    s.close
+    sys.exit()
+
+try:
+    s.listen(1)
+except s.error as msg:
+    print 'Cant listen to the client.' + str(msg[0]) + ' Message ' + msg[1]
+    s.close
+    sys.exit()
 
 while 1:
     conn, addr = s.accept()  # returns a NEW socket
     cliAdr, cliPort = addr
     print("Connected to: ", cliAdr)
 
+    s.settimeout(30)
     cliM = ""
     while True:
-        data = conn.recv(1024)
+        try:
+            data = conn.recv(1024)
+        except s.timeout:
+            print "got timeout"
+            close_server(conn, s)
 
         print(data, len(data))
         if not data:
