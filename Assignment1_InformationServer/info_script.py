@@ -27,6 +27,9 @@ while 1:
         elif data == "EXIT":
             close_server(conn, s)
             break
+        else:
+            conn.sendall("UNKNOWN COMMAND")
+
         if not data:
             break
     conn.close()
