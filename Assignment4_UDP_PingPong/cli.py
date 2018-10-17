@@ -1,52 +1,43 @@
-from socket import *
+import socket
 import time
 import sys
 
-address = 'localhost'
+if len(sys.argv) > 2:
+    total_pings_toSend = int(sys.argv[2])
+else:
+    total_pings_toSend = 4
+
+address = sys.argv[1]
 port = 2000
 pong_server_address = (address, port)
+ping_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
-ping_socket = socket(AF_INET, SOCK_DGRAM)
-# ping_socket.setblocking(0)  # non-blocking
+rrt_counter = 0
+timeouts_counter = 0
+pings_counter = 0
+total_pings_sent = 0
 
+while total_pings_sent < total_pings_toSend:
+    if pings_counter == 1000:
+        pings_counter = 0
 
-for i in range(1, 6):
-    ping_messge = "PING-" + str(i)
-    while True:
-        try:
-            ping_socket.sendto(ping_messge, pong_server_address)
-            break
-        except:
-            pass
+    ping_socket.settimeout(5.0)
+    ping_messge = "PING-" + str(pings_counter)
+    ping_socket.sendto(ping_messge, pong_server_address)
+    ping_sent_at = time.time()
 
-ping_sent_at = time.clock()
-pong_wait_until = ping_sent_at + 5  # seconds
-
-
-def timeout(wait_until):
-    if time.clock() > wait_until:
-        ping_socket.close()
-        print "Packet lost"
-        sys.exit(0)
-
-
-def receive_pong():
-    is_socket_closed = False
     try:
         pong_message, pong_server_address = ping_socket.recvfrom(1024)
-        print(pong_message)
-        pong_received_at = time.clock()
-        ping_socket.close()
-        is_socket_closed = True
+        pong_received_at = time.time()
         round_trip_time = (pong_received_at - ping_sent_at)
-        print(round_trip_time)
-        print "RTT (Round Trip Time) = {0:.6f}s".format(round_trip_time)
-    except:
-        pass
-    if is_socket_closed:
-        sys.exit(0)
+        round_trip_time = int(round(round_trip_time * 1000))
+        print(str(pings_counter) + ": " + str(round_trip_time) + "ms")
+        rrt_counter += round_trip_time
+    except socket.timeout:
+        print(str(pings_counter) + ": " + 'timeout')
+        timeouts_counter += 1
+    pings_counter += 1
+    total_pings_sent += 1
+    time.sleep(0.1)
 
-
-while True:
-    receive_pong()
-    timeout(pong_wait_until)
+print("AVG=" + str(rrt_counter / total_pings_sent) + " TIMEOUTS=" + str(timeouts_counter))

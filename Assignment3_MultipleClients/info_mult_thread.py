@@ -3,6 +3,7 @@ import sys
 import time
 from threading import Thread
 
+
 # --- returns ip addres ---
 def get_ip_from_adr(addr):
     cliIp, cliPort = addr
@@ -62,7 +63,6 @@ def handle_client(conn, client_addr):
 host = 'localhost'
 port = 2000
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
 
 # Bind socket to local host and port
 try:
