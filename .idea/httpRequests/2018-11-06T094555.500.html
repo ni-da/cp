@@ -1,0 +1,272 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>AttributeError: Appointment instance has no __call__ method // Werkzeug Debugger</title>
+    <link rel="stylesheet" href="?__debugger__=yes&amp;cmd=resource&amp;f=style.css"
+        type="text/css">
+    <!-- We need to make sure this has a favicon so that the debugger does
+         not by accident trigger a request to /favicon.ico which might
+         change the application state. -->
+    <link rel="shortcut icon"
+        href="?__debugger__=yes&amp;cmd=resource&amp;f=console.png">
+    <script src="?__debugger__=yes&amp;cmd=resource&amp;f=jquery.js"></script>
+    <script src="?__debugger__=yes&amp;cmd=resource&amp;f=debugger.js"></script>
+    <script type="text/javascript">
+      var TRACEBACK = 61224048,
+          CONSOLE_MODE = false,
+          EVALEX = true,
+          EVALEX_TRUSTED = false,
+          SECRET = "EzqIhe9kCsSBVTV35wzp";
+    </script>
+  </head>
+  <body style="background-color: #fff">
+    <div class="debugger">
+<h1>AttributeError</h1>
+<div class="detail">
+  <p class="errormsg">AttributeError: Appointment instance has no __call__ method</p>
+</div>
+<h2 class="traceback">Traceback <em>(most recent call last)</em></h2>
+<div class="traceback">
+  
+  <ul><li><div class="frame" id="frame-61224384">
+  <h4>File <cite class="filename">"C:\Users\NidaI\Documents\GitHub\cp\venv\lib\site-packages\flask\app.py"</cite>,
+      line <em class="line">2309</em>,
+      in <code class="function">__call__</code></h4>
+  <div class="source"><pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">    </span>def __call__(self, environ, start_response):</pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;The WSGI server calls the Flask application object as the</pre>
+<pre class="line before"><span class="ws">        </span>WSGI application. This calls :meth:`wsgi_app` which can be</pre>
+<pre class="line before"><span class="ws">        </span>wrapped to applying middleware.&quot;&quot;&quot;</pre>
+<pre class="line current"><span class="ws">        </span>return self.wsgi_app(environ, start_response)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def __repr__(self):</pre>
+<pre class="line after"><span class="ws">        </span>return '&lt;%s %r&gt;' % (</pre>
+<pre class="line after"><span class="ws">            </span>self.__class__.__name__,</pre>
+<pre class="line after"><span class="ws">            </span>self.name,</pre></div>
+</div>
+
+<li><div class="frame" id="frame-61224440">
+  <h4>File <cite class="filename">"C:\Users\NidaI\Documents\GitHub\cp\venv\lib\site-packages\flask\app.py"</cite>,
+      line <em class="line">2295</em>,
+      in <code class="function">wsgi_app</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line before"><span class="ws">                </span>ctx.push()</pre>
+<pre class="line before"><span class="ws">                </span>response = self.full_dispatch_request()</pre>
+<pre class="line before"><span class="ws">            </span>except Exception as e:</pre>
+<pre class="line before"><span class="ws">                </span>error = e</pre>
+<pre class="line current"><span class="ws">                </span>response = self.handle_exception(e)</pre>
+<pre class="line after"><span class="ws">            </span>except:</pre>
+<pre class="line after"><span class="ws">                </span>error = sys.exc_info()[1]</pre>
+<pre class="line after"><span class="ws">                </span>raise</pre>
+<pre class="line after"><span class="ws">            </span>return response(environ, start_response)</pre>
+<pre class="line after"><span class="ws">        </span>finally:</pre></div>
+</div>
+
+<li><div class="frame" id="frame-61225056">
+  <h4>File <cite class="filename">"C:\Users\NidaI\Documents\GitHub\cp\venv\lib\site-packages\flask\app.py"</cite>,
+      line <em class="line">1741</em>,
+      in <code class="function">handle_exception</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">            </span># if we want to repropagate the exception, we can attempt to</pre>
+<pre class="line before"><span class="ws">            </span># raise it with the whole traceback in case we can do that</pre>
+<pre class="line before"><span class="ws">            </span># (the function was actually called from the except part)</pre>
+<pre class="line before"><span class="ws">            </span># otherwise, we just raise the error again</pre>
+<pre class="line before"><span class="ws">            </span>if exc_value is e:</pre>
+<pre class="line current"><span class="ws">                </span>reraise(exc_type, exc_value, tb)</pre>
+<pre class="line after"><span class="ws">            </span>else:</pre>
+<pre class="line after"><span class="ws">                </span>raise e</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>self.log_exception((exc_type, exc_value, tb))</pre>
+<pre class="line after"><span class="ws">        </span>if handler is None:</pre></div>
+</div>
+
+<li><div class="frame" id="frame-61224888">
+  <h4>File <cite class="filename">"C:\Users\NidaI\Documents\GitHub\cp\venv\lib\site-packages\flask\app.py"</cite>,
+      line <em class="line">2292</em>,
+      in <code class="function">wsgi_app</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>ctx = self.request_context(environ)</pre>
+<pre class="line before"><span class="ws">        </span>error = None</pre>
+<pre class="line before"><span class="ws">        </span>try:</pre>
+<pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line before"><span class="ws">                </span>ctx.push()</pre>
+<pre class="line current"><span class="ws">                </span>response = self.full_dispatch_request()</pre>
+<pre class="line after"><span class="ws">            </span>except Exception as e:</pre>
+<pre class="line after"><span class="ws">                </span>error = e</pre>
+<pre class="line after"><span class="ws">                </span>response = self.handle_exception(e)</pre>
+<pre class="line after"><span class="ws">            </span>except:</pre>
+<pre class="line after"><span class="ws">                </span>error = sys.exc_info()[1]</pre></div>
+</div>
+
+<li><div class="frame" id="frame-61225112">
+  <h4>File <cite class="filename">"C:\Users\NidaI\Documents\GitHub\cp\venv\lib\site-packages\flask\app.py"</cite>,
+      line <em class="line">1816</em>,
+      in <code class="function">full_dispatch_request</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">            </span>rv = self.preprocess_request()</pre>
+<pre class="line before"><span class="ws">            </span>if rv is None:</pre>
+<pre class="line before"><span class="ws">                </span>rv = self.dispatch_request()</pre>
+<pre class="line before"><span class="ws">        </span>except Exception as e:</pre>
+<pre class="line before"><span class="ws">            </span>rv = self.handle_user_exception(e)</pre>
+<pre class="line current"><span class="ws">        </span>return self.finalize_request(rv)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def finalize_request(self, rv, from_error_handler=False):</pre>
+<pre class="line after"><span class="ws">        </span>&quot;&quot;&quot;Given the return value from a view function this finalizes</pre>
+<pre class="line after"><span class="ws">        </span>the request by converting it into a response and invoking the</pre>
+<pre class="line after"><span class="ws">        </span>postprocessing functions.  This is invoked for both normal</pre></div>
+</div>
+
+<li><div class="frame" id="frame-61225168">
+  <h4>File <cite class="filename">"C:\Users\NidaI\Documents\GitHub\cp\venv\lib\site-packages\flask\app.py"</cite>,
+      line <em class="line">1831</em>,
+      in <code class="function">finalize_request</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>with the `from_error_handler` flag.  If enabled, failures in</pre>
+<pre class="line before"><span class="ws">        </span>response processing will be logged and otherwise ignored.</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>:internal:</pre>
+<pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;</pre>
+<pre class="line current"><span class="ws">        </span>response = self.make_response(rv)</pre>
+<pre class="line after"><span class="ws">        </span>try:</pre>
+<pre class="line after"><span class="ws">            </span>response = self.process_response(response)</pre>
+<pre class="line after"><span class="ws">            </span>request_finished.send(self, response=response)</pre>
+<pre class="line after"><span class="ws">        </span>except Exception:</pre>
+<pre class="line after"><span class="ws">            </span>if not from_error_handler:</pre></div>
+</div>
+
+<li><div class="frame" id="frame-61225224">
+  <h4>File <cite class="filename">"C:\Users\NidaI\Documents\GitHub\cp\venv\lib\site-packages\flask\app.py"</cite>,
+      line <em class="line">1974</em>,
+      in <code class="function">make_response</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">                </span>status = headers = None</pre>
+<pre class="line before"><span class="ws">            </span>else:</pre>
+<pre class="line before"><span class="ws">                </span># evaluate a WSGI callable, or coerce a different response</pre>
+<pre class="line before"><span class="ws">                </span># class to the correct type</pre>
+<pre class="line before"><span class="ws">                </span>try:</pre>
+<pre class="line current"><span class="ws">                    </span>rv = self.response_class.force_type(rv, request.environ)</pre>
+<pre class="line after"><span class="ws">                </span>except TypeError as e:</pre>
+<pre class="line after"><span class="ws">                    </span>new_error = TypeError(</pre>
+<pre class="line after"><span class="ws">                        </span>'{e}\nThe view function did not return a valid'</pre>
+<pre class="line after"><span class="ws">                        </span>' response. The return type must be a string, tuple,'</pre>
+<pre class="line after"><span class="ws">                        </span>' Response instance, or WSGI callable, but it was a'</pre></div>
+</div>
+
+<li><div class="frame" id="frame-61225280">
+  <h4>File <cite class="filename">"C:\Users\NidaI\Documents\GitHub\cp\venv\lib\site-packages\werkzeug\wrappers.py"</cite>,
+      line <em class="line">921</em>,
+      in <code class="function">force_type</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>&quot;&quot;&quot;</pre>
+<pre class="line before"><span class="ws">        </span>if not isinstance(response, BaseResponse):</pre>
+<pre class="line before"><span class="ws">            </span>if environ is None:</pre>
+<pre class="line before"><span class="ws">                </span>raise TypeError('cannot convert WSGI application into '</pre>
+<pre class="line before"><span class="ws">                                </span>'response objects without an environ')</pre>
+<pre class="line current"><span class="ws">            </span>response = BaseResponse(*_run_wsgi_app(response, environ))</pre>
+<pre class="line after"><span class="ws">        </span>response.__class__ = cls</pre>
+<pre class="line after"><span class="ws">        </span>return response</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>@classmethod</pre>
+<pre class="line after"><span class="ws">    </span>def from_app(cls, app, environ, buffered=False):</pre></div>
+</div>
+
+<li><div class="frame" id="frame-61225336">
+  <h4>File <cite class="filename">"C:\Users\NidaI\Documents\GitHub\cp\venv\lib\site-packages\werkzeug\test.py"</cite>,
+      line <em class="line">923</em>,
+      in <code class="function">run_wsgi_app</code></h4>
+  <div class="source"><pre class="line before"><span class="ws">        </span>if exc_info is not None:</pre>
+<pre class="line before"><span class="ws">            </span>reraise(*exc_info)</pre>
+<pre class="line before"><span class="ws">        </span>response[:] = [status, headers]</pre>
+<pre class="line before"><span class="ws">        </span>return buffer.append</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line current"><span class="ws">    </span>app_rv = app(environ, start_response)</pre>
+<pre class="line after"><span class="ws">    </span>close_func = getattr(app_rv, 'close', None)</pre>
+<pre class="line after"><span class="ws">    </span>app_iter = iter(app_rv)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span># when buffering we emit the close call early and convert the</pre>
+<pre class="line after"><span class="ws">    </span># application iterator into a regular list</pre></div>
+</div>
+</ul>
+  <blockquote>AttributeError: Appointment instance has no __call__ method</blockquote>
+</div>
+
+<div class="plain">
+  <form action="/?__debugger__=yes&amp;cmd=paste" method="post">
+    <p>
+      <input type="hidden" name="language" value="pytb">
+      This is the Copy/Paste friendly version of the traceback.  <span
+      class="pastemessage">You can also paste this traceback into
+      a <a href="https://gist.github.com/">gist</a>:
+      <input type="submit" value="create paste"></span>
+    </p>
+    <textarea cols="50" rows="10" name="code" readonly>Traceback (most recent call last):
+  File &quot;C:\Users\NidaI\Documents\GitHub\cp\venv\lib\site-packages\flask\app.py&quot;, line 2309, in __call__
+    return self.wsgi_app(environ, start_response)
+  File &quot;C:\Users\NidaI\Documents\GitHub\cp\venv\lib\site-packages\flask\app.py&quot;, line 2295, in wsgi_app
+    response = self.handle_exception(e)
+  File &quot;C:\Users\NidaI\Documents\GitHub\cp\venv\lib\site-packages\flask\app.py&quot;, line 1741, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File &quot;C:\Users\NidaI\Documents\GitHub\cp\venv\lib\site-packages\flask\app.py&quot;, line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File &quot;C:\Users\NidaI\Documents\GitHub\cp\venv\lib\site-packages\flask\app.py&quot;, line 1816, in full_dispatch_request
+    return self.finalize_request(rv)
+  File &quot;C:\Users\NidaI\Documents\GitHub\cp\venv\lib\site-packages\flask\app.py&quot;, line 1831, in finalize_request
+    response = self.make_response(rv)
+  File &quot;C:\Users\NidaI\Documents\GitHub\cp\venv\lib\site-packages\flask\app.py&quot;, line 1974, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File &quot;C:\Users\NidaI\Documents\GitHub\cp\venv\lib\site-packages\werkzeug\wrappers.py&quot;, line 921, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File &quot;C:\Users\NidaI\Documents\GitHub\cp\venv\lib\site-packages\werkzeug\test.py&quot;, line 923, in run_wsgi_app
+    app_rv = app(environ, start_response)
+AttributeError: Appointment instance has no __call__ method</textarea>
+  </form>
+</div>
+<div class="explanation">
+  The debugger caught an exception in your WSGI application.  You can now
+  look at the traceback which led to the error.  <span class="nojavascript">
+  If you enable JavaScript you can also use additional features such as code
+  execution (if the evalex feature is enabled), automatic pasting of the
+  exceptions and much more.</span>
+</div>
+      <div class="footer">
+        Brought to you by <strong class="arthur">DON'T PANIC</strong>, your
+        friendly Werkzeug powered traceback interpreter.
+      </div>
+    </div>
+
+    <div class="pin-prompt">
+      <div class="inner">
+        <h3>Console Locked</h3>
+        <p>
+          The console is locked and needs to be unlocked by entering the PIN.
+          You can find the PIN printed out on the standard output of your
+          shell that runs the server.
+        <form>
+          <p>PIN:
+            <input type=text name=pin size=14>
+            <input type=submit name=btn value="Confirm Pin">
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
+
+<!--
+
+Traceback (most recent call last):
+  File "C:\Users\NidaI\Documents\GitHub\cp\venv\lib\site-packages\flask\app.py", line 2309, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "C:\Users\NidaI\Documents\GitHub\cp\venv\lib\site-packages\flask\app.py", line 2295, in wsgi_app
+    response = self.handle_exception(e)
+  File "C:\Users\NidaI\Documents\GitHub\cp\venv\lib\site-packages\flask\app.py", line 1741, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\NidaI\Documents\GitHub\cp\venv\lib\site-packages\flask\app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\NidaI\Documents\GitHub\cp\venv\lib\site-packages\flask\app.py", line 1816, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "C:\Users\NidaI\Documents\GitHub\cp\venv\lib\site-packages\flask\app.py", line 1831, in finalize_request
+    response = self.make_response(rv)
+  File "C:\Users\NidaI\Documents\GitHub\cp\venv\lib\site-packages\flask\app.py", line 1974, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "C:\Users\NidaI\Documents\GitHub\cp\venv\lib\site-packages\werkzeug\wrappers.py", line 921, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "C:\Users\NidaI\Documents\GitHub\cp\venv\lib\site-packages\werkzeug\test.py", line 923, in run_wsgi_app
+    app_rv = app(environ, start_response)
+AttributeError: Appointment instance has no __call__ method
+
+-->

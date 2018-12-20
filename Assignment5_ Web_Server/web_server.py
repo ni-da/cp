@@ -1,7 +1,7 @@
 import socket
 import datetime
 
-
+0
 def get_fileType(filenamestr):
     allowed_types = ["html", "jpg", "png", "js", "css", "zip"]
     if "." in filenamestr:
